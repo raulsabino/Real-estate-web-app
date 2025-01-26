@@ -4,54 +4,87 @@ Content-Type: application/json
 
 ###
 
-### Get a single listing by ID
+### Get a specific listing by ID
 GET http://localhost:5240/listings/1
 Content-Type: application/json
 
 ###
 
-### Create a new listing
+### Create a new house listing
 POST http://localhost:5240/listings
 Content-Type: application/json
 
 {
-  "title": "Cozy Cottage",
-  "description": "A charming cottage perfect for a small family or vacation home.",
-  "address": "789 Pine Lane",
-  "city": "Smallville",
-  "state": "Kansas",
-  "neighborhood": "Country Side",
-  "price": 250000.00,
-  "areaInSquareMeters": 95.0,
-  "bedrooms": 2,
-  "bathrooms": 1,
-  "parkingSpaces": 1,
-  "propertyType": "House"
+  "title": "Luxury Villa",
+  "description": "An exquisite villa with ocean views and modern amenities.",
+  "address": "123 Ocean View Drive",
+  "city": "Santa Monica",
+  "state": "California",
+  "neighborhood": "Oceanfront",
+  "price": 1200000.00,
+  "hoa": 500.00,
+  "propertyTaxes": 8000.00,
+  "areaInSquareMeters": 300.0,
+  "bedrooms": 5,
+  "bathrooms": 4,
+  "livingRoom": 2,
+  "parkingSpaces": 3,
+  "propertyType": "House",
+  "listingDate": "2025-01-23T15:00:00"
 }
 
 ###
 
-### Update an existing listing
+### Create a new land listing
+POST http://localhost:5240/listings
+Content-Type: application/json
+
+{
+  "title": "Large Agricultural Land",
+  "description": "100-acre farmland ideal for agriculture and livestock.",
+  "address": "456 Country Lane",
+  "city": "Lexington",
+  "state": "Kentucky",
+  "neighborhood": null,
+  "price": 500000.00,
+  "hoa": null,
+  "propertyTaxes": 3000.00,
+  "areaInSquareMeters": 400000.0,
+  "bedrooms": null,
+  "bathrooms": null,
+  "livingRoom": null,
+  "parkingSpaces": null,
+  "propertyTypeId": 1,
+  "listingDate": "2025-01-23T15:00:00"
+}
+
+###
+
+### Update a specific listing
 PUT http://localhost:5240/listings/1
 Content-Type: application/json
 
 {
-  "title": "Modernized Family Home",
-  "description": "A renovated family home with modern amenities.",
+  "title": "Modern Family Home - Renovated",
+  "description": "Recently updated with new appliances and a fresh coat of paint.",
   "address": "123 Maple Street",
   "city": "Springfield",
   "state": "Illinois",
   "neighborhood": "Downtown",
-  "price": 370000.00,
-  "areaInSquareMeters": 210.0,
+  "price": 400000.00,
+  "hoa": 250.00,
+  "propertyTaxes": 3500.00,
+  "areaInSquareMeters": 220.0,
   "bedrooms": 4,
   "bathrooms": 3,
+  "livingRoom": 1,
   "parkingSpaces": 2,
-  "propertyType": "House"
+  "propertyTypeId": 2,
+  "listingDate": "2025-01-20T15:00:00"
 }
 
 ###
 
-### Delete a listing
+### Delete a specific listing
 DELETE http://localhost:5240/listings/1
 Content-Type: application/json

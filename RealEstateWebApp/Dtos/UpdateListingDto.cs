@@ -1,18 +1,24 @@
-namespace RealEstateWebApp.Dtos;
+using System.ComponentModel.DataAnnotations;
+
+namespace RealEstateWebApp.Api.Dtos;
 
 public record class UpdateListingDto(
-    int Id,
-    string Title,
-    string Description,
-    string Address,
-    string City,
-    string State,
-    string Neighborhood,
-    decimal Price,
-    double AreaInSquareMeters,
-    int Bedrooms,
-    int Bathrooms,
-    int ParkingSpaces,
-    string PropertyType,
-    DateTime ListingDate
+    [Required] int Id,
+    [Required] string Title,
+    [Required] string Description,
+    [Required] string Address,
+    [Required] string City,
+    [Required] string State,
+    string? Neighborhood,
+    [Required] decimal Price,
+    decimal? HOA,
+    decimal? PropertyTaxes,
+    [Required] double AreaInSquareMeters,
+    int? Bedrooms,
+    int? Bathrooms,
+    int? LivingRoom,
+    int? ParkingSpaces,
+    [Required] string PropertyType,
+    ICollection<string>? Images,
+    [Required] DateTime ListingDate
 );

@@ -1,6 +1,8 @@
-using RealEstateWebApp.Dtos;
+using RealEstateWebApp.Api.Data;
+using RealEstateWebApp.Api.Dtos;
+using RealEstateWebApp.Api.Entities;
 
-namespace RealEstateWebApp.Endpoints;
+namespace RealEstateWebApp.Api.Endpoints;
 
 public static class ListingsEndpoints
 {
@@ -10,39 +12,55 @@ public static class ListingsEndpoints
         new ListingDto(
                     Id: 1,
                     Title: "Modern Family Home",
-                    Description: "A beautiful family home with a large garden and pool.",
+                    Description: "A beautiful family home with a garden and pool.",
                     Address: "123 Maple Street",
                     City: "Springfield",
                     State: "Illinois",
                     Neighborhood: "Downtown",
-                    Price: 350000.00M,
+                    Price: 450000.00M,
+                    HOA: 200.00M,
+                    PropertyTaxes: 3000.00M,
                     AreaInSquareMeters: 200.5,
                     Bedrooms: 4,
                     Bathrooms: 3,
+                    LivingRoom: 1,
                     ParkingSpaces: 2,
                     PropertyType: "House",
+                    Images: new List<string>
+                    {
+                        "https://example.com/image1.jpg",
+                        "https://example.com/image2.jpg"
+                    },
                     ListingDate: DateTime.Now
                 ),
                 new ListingDto(
                     Id: 2,
-                    Title: "Luxury Apartment",
-                    Description: "A stunning apartment with city views and modern amenities.",
-                    Address: "456 Elm Avenue",
-                    City: "Metropolis",
-                    State: "New York",
-                    Neighborhood: "Financial District",
-                    Price: 850000.00M,
-                    AreaInSquareMeters: 120.0,
-                    Bedrooms: 3,
-                    Bathrooms: 2,
-                    ParkingSpaces: 1,
-                    PropertyType: "Apartment",
+                    Title: "Spacious Land Lot",
+                    Description: "A 5-acre land lot perfect for development.",
+                    Address: "789 Greenfield Rd",
+                    City: "Smallville",
+                    State: "Kansas",
+                    Neighborhood: null,
+                    Price: 150000.00M,
+                    HOA: null,
+                    PropertyTaxes: null,
+                    AreaInSquareMeters: 20000.0,
+                    Bedrooms: null,  // Not applicable for land
+                    Bathrooms: null, // Not applicable for land
+                    LivingRoom: null,
+                    ParkingSpaces: null,
+                    PropertyType: "Land",
+                    Images: new List<string>
+                    {
+                        "https://example.com/image1.jpg",
+                        "https://example.com/image2.jpg"
+                    },
                     ListingDate: DateTime.Now
                 )
     ];
 
     public static RouteGroupBuilder MapListingsEndpoints(this WebApplication app) {
-        var group = app.MapGroup("listings");
+        var group = app.MapGroup("listings").WithParameterValidation();
 
         // GET /listings
         group.MapGet("/", () => listings);
@@ -54,26 +72,31 @@ public static class ListingsEndpoints
         }).WithName(GetListingEndPointName);
 
         // POST /listings
-        group.MapPost("/", (CreateListingDto newListing) => {
+        group.MapPost("/", (CreateListingDto newListing, RealEstateContext dbContext) => {
             
-            var listing = new ListingDto(
-                listings.Count + 1,
-                newListing.Title,
-                newListing.Description,
-                newListing.Address,
-                newListing.City,
-                newListing.State,
-                newListing.Neighborhood,
-                newListing.Price,
-                newListing.AreaInSquareMeters,
-                newListing.Bedrooms,
-                newListing.Bathrooms,
-                newListing.ParkingSpaces,
-                newListing.PropertyType,
-                DateTime.Now
-            );
+            Listing listing = new()
+            {
+                Title = newListing.Title,
+                Description = newListing.Description,
+                Address = newListing.Address,
+                City = newListing.City,
+                State = newListing.State,
+                Neighborhood = newListing.Neighborhood,
+                Price = newListing.Price,
+                HOA = newListing.HOA,
+                PropertyTaxes = newListing.PropertyTaxes,
+                AreaInSquareMeters = newListing.AreaInSquareMeters,
+                Bedrooms = newListing.Bedrooms,
+                Bathrooms = newListing.Bathrooms,
+                LivingRoom = newListing.LivingRoom,
+                ParkingSpaces = newListing.ParkingSpaces,
+                PropertyType = newListing.PropertyType,
+                Images = newListing.Images,
+                ListingDate = DateTime.Now
+            };
 
-            listings.Add(listing);
+            dbContext.Listings.Add(listing);
+            dbContext.SaveChanges();
 
             return Results.CreatedAtRoute(GetListingEndPointName, new { id = listing.Id }, listing);
         });
@@ -95,11 +118,15 @@ public static class ListingsEndpoints
                 updatedListing.State,
                 updatedListing.Neighborhood,
                 updatedListing.Price,
+                updatedListing.HOA,
+                updatedListing.PropertyTaxes,
                 updatedListing.AreaInSquareMeters,
                 updatedListing.Bedrooms,
                 updatedListing.Bathrooms,
+                updatedListing.LivingRoom,
                 updatedListing.ParkingSpaces,
                 updatedListing.PropertyType,
+                updatedListing.Images,
                 DateTime.Now
             );
 

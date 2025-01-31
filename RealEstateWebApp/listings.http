@@ -5,7 +5,7 @@ Content-Type: application/json
 ###
 
 ### Get a specific listing by ID
-GET http://localhost:5240/listings/1
+GET http://localhost:5240/listings/4
 Content-Type: application/json
 
 ###
@@ -30,6 +30,10 @@ Content-Type: application/json
   "livingRoom": 2,
   "parkingSpaces": 3,
   "propertyType": "House",
+  "images": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg"
+  ],
   "listingDate": "2025-01-23T15:00:00"
 }
 
@@ -54,7 +58,7 @@ Content-Type: application/json
   "bathrooms": null,
   "livingRoom": null,
   "parkingSpaces": null,
-  "propertyTypeId": 1,
+  "propertyType": "Land",
   "listingDate": "2025-01-23T15:00:00"
 }
 
@@ -79,12 +83,12 @@ Content-Type: application/json
   "bathrooms": 3,
   "livingRoom": 1,
   "parkingSpaces": 2,
-  "propertyTypeId": 2,
+  "propertyType": "House",
   "listingDate": "2025-01-20T15:00:00"
 }
 
 ###
 
 ### Delete a specific listing
-DELETE http://localhost:5240/listings/1
+DELETE http://localhost:5240/listings/3
 Content-Type: application/json

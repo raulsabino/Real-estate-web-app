@@ -11,7 +11,7 @@ using RealEstateWebApp.Api.Data;
 namespace RealEstateWebApp.Api.Data.Migrations
 {
     [DbContext(typeof(RealEstateContext))]
-    [Migration("20250126021828_InitialCreate")]
+    [Migration("20250201032619_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -42,29 +42,6 @@ namespace RealEstateWebApp.Api.Data.Migrations
                     b.HasIndex("ListingId");
 
                     b.ToTable("AdditionalProperties");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Key = "Year Built",
-                            ListingId = 1,
-                            Value = "2020"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Key = "Pool Type",
-                            ListingId = 1,
-                            Value = "In-ground"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Key = "Zoning",
-                            ListingId = 2,
-                            Value = "Residential"
-                        });
                 });
 
             modelBuilder.Entity("RealEstateWebApp.Api.Entities.Listing", b =>
@@ -133,43 +110,6 @@ namespace RealEstateWebApp.Api.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Listings");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "123 Maple Street",
-                            AreaInSquareMeters = 200.5,
-                            Bathrooms = 3,
-                            Bedrooms = 4,
-                            City = "Springfield",
-                            Description = "A beautiful family home with a garden and pool.",
-                            HOA = 200.00m,
-                            Images = "[]",
-                            ListingDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LivingRoom = 1,
-                            Neighborhood = "Downtown",
-                            ParkingSpaces = 2,
-                            Price = 450000.00m,
-                            PropertyTaxes = 3000.00m,
-                            PropertyType = "House",
-                            State = "Illinois",
-                            Title = "Modern Family Home"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "789 Greenfield Rd",
-                            AreaInSquareMeters = 20000.0,
-                            City = "Smallville",
-                            Description = "A 5-acre land lot perfect for development.",
-                            Images = "[]",
-                            ListingDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Price = 150000.00m,
-                            PropertyType = "Land",
-                            State = "Kansas",
-                            Title = "Spacious Land Lot"
-                        });
                 });
 
             modelBuilder.Entity("RealEstateWebApp.Api.Entities.AdditionalProperty", b =>

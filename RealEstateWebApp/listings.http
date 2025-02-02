@@ -34,7 +34,11 @@ Content-Type: application/json
       "https://example.com/image1.jpg",
       "https://example.com/image2.jpg"
   ],
-  "listingDate": "2025-01-23T15:00:00"
+  "listingDate": "2025-01-23T15:00:00",
+  "additionalProperties": [
+    { "key": "Pool", "value": "Private" },
+    { "key": "Garden", "value": "Yes" }
+  ]
 }
 
 ###
@@ -59,7 +63,11 @@ Content-Type: application/json
   "livingRoom": null,
   "parkingSpaces": null,
   "propertyType": "Land",
-  "listingDate": "2025-01-23T15:00:00"
+  "listingDate": "2025-01-23T15:00:00",
+  "additionalProperties": [
+    { "key": "Pool", "value": "Private" },
+    { "key": "Garden", "value": "Yes" }
+  ]
 }
 
 ###

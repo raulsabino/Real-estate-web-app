@@ -25,7 +25,10 @@ public static class ListingMapping
             ParkingSpaces = listing.ParkingSpaces,
             PropertyType = listing.PropertyType,
             Images = listing.Images,
-            ListingDate = DateTime.Now
+            ListingDate = DateTime.Now,
+            AdditionalProperties = listing.AdditionalProperties?
+                .Select(ap => new AdditionalProperty { Key = ap.Key, Value = ap.Value })
+                .ToList() ?? new List<AdditionalProperty>()
         };
     }
 
@@ -49,7 +52,8 @@ public static class ListingMapping
             listing.ParkingSpaces,
             listing.PropertyType,
             listing.Images,
-            DateTime.Now
+            DateTime.Now,
+            listing.AdditionalProperties.Select(ap => new AdditionalPropertyDto(ap.Id, ap.ListingId, ap.Key, ap.Value)).ToList()
         );
     }
 

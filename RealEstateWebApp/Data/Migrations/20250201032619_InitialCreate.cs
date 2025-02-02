@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace RealEstateWebApp.Api.Data.Migrations
 {
     /// <inheritdoc />
@@ -61,25 +59,6 @@ namespace RealEstateWebApp.Api.Data.Migrations
                         principalTable: "Listings",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.InsertData(
-                table: "Listings",
-                columns: new[] { "Id", "Address", "AreaInSquareMeters", "Bathrooms", "Bedrooms", "City", "Description", "HOA", "Images", "ListingDate", "LivingRoom", "Neighborhood", "ParkingSpaces", "Price", "PropertyTaxes", "PropertyType", "State", "Title" },
-                values: new object[,]
-                {
-                    { 1, "123 Maple Street", 200.5, 3, 4, "Springfield", "A beautiful family home with a garden and pool.", 200.00m, "[]", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Downtown", 2, 450000.00m, 3000.00m, "House", "Illinois", "Modern Family Home" },
-                    { 2, "789 Greenfield Rd", 20000.0, null, null, "Smallville", "A 5-acre land lot perfect for development.", null, "[]", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, null, 150000.00m, null, "Land", "Kansas", "Spacious Land Lot" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "AdditionalProperties",
-                columns: new[] { "Id", "Key", "ListingId", "Value" },
-                values: new object[,]
-                {
-                    { 1, "Year Built", 1, "2020" },
-                    { 2, "Pool Type", 1, "In-ground" },
-                    { 3, "Zoning", 2, "Residential" }
                 });
 
             migrationBuilder.CreateIndex(

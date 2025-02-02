@@ -19,5 +19,6 @@ public record class CreateListingDto(
     int? ParkingSpaces,
     [Required] string PropertyType,
     ICollection<string>? Images,
-    [Required] DateTime ListingDate
+    [Required] DateTime ListingDate,
+    ICollection<AdditionalPropertyDto>? AdditionalProperties
 );

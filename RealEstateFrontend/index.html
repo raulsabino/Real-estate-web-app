@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Real Estate CRM Admin Dashboard</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <div class="title-container">
+      <h1>Dashboard</h1>
+    </div>
+    <div class="header-container">
+      <div class="search-bar">
+        <input type="text" placeholder="Search listings..." />
+      </div>
+      <a href="#" class="listing-button">Add Listing</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="stats">
+      <div class="stat">
+        <p>Total Listings</p>
+        <h2>246</h2>
+      </div>
+      <div class="stat">
+        <p>Total Value</p>
+        <h2>$24.5M</h2>
+      </div>
+      <div class="stat">
+        <p>Avg. Days Listed</p>
+        <h2>45</h2>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-header">
+        <h2>Listing Statistics</h2>
+      </div>
+      <canvas id="listingChart"></canvas>
+    </div>
+
+    <div class="listings">
+      <h2>Recent Listings</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Address</th>
+            <th>Price</th>
+            <th>Area (sq. m)</th>
+            <th>Property Type</th>
+            <th>Listed On</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+    </div>
+
+    <div id="add-listing-modal" class="modal">
+        <div class="modal-content">
+            <h2>Add New Listing</h2>
+            <form id="listingForm">
+                <input type="text" id="title" placeholder="Title" required>
+                <input type="text" id="description" placeholder="Description" required>
+                <input type="text" id="address" placeholder="Address" required>
+                <input type="text" id="city" placeholder="City" required>
+                <input type="text" id="state" placeholder="State" required>
+                <input type="text" id="neighborhood" placeholder="Neighborhood">
+                <input type="number" id="price" placeholder="Price" required>
+                <input type="number" id="hoa" placeholder="HOA">
+                <input type="number" id="propertytaxes" placeholder="Property Taxes">
+                <input type="number" id="area" placeholder="Area (sq. m)" required>
+                <input type="number" id="bedrooms" placeholder="Bedrooms">
+                <input type="number" id="bathrooms" placeholder="Bathrooms">
+                <input type="number" id="livingroom" placeholder="Living Room">
+                <input type="number" id="parkingspaces" placeholder="Parking Spaces">
+                
+                <input type="file" id="images" accept="image/*" multiple>
+    
+                <input type="text" id="propertyType" placeholder="Property Type" required>
+                
+                <button type="submit">Submit</button>
+                <button class="close-btn">Cancel</button>
+            </form>
+        </div>
+    </div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>

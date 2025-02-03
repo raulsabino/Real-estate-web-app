@@ -1,0 +1,235 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.5rem 2.5rem;
+    background-color: #fff;
+}
+
+.title-container {
+    margin-right: 1rem;
+}
+
+.title-container h1 {
+    margin: 0 0 0.2rem 0;
+    font-size: 1.5rem;
+    color: #000;
+}
+
+.subheading {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.listing-button {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.container {
+    padding: 0rem 2rem 2rem 2rem;
+    margin: 0 auto;
+}
+
+.stats {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat {
+    background-color: #fff;
+    border: 1px solid rgba(160, 160, 160, 0.4);
+    border-radius: 8px;
+    flex: 1;
+    padding: 1rem 1.5rem;
+}
+
+.stat p {
+    margin: 0;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.stat h2 {
+    margin: 0.3rem 0 0 0;
+    font-size: 1.3rem;
+    color: #333;
+}
+
+.chart-container {
+    background-color: #fff;
+    border: 1px solid rgba(160, 160, 160, 0.4);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+    height: 400px;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chart-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+#listingChart {
+    flex: 1;
+    margin-top: 1rem;
+}
+
+.listings {
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid rgba(160, 160, 160, 0.4);
+    padding: 2rem;
+}
+
+.listings h2 {
+    margin-top: 0;
+}
+
+.listings h2 {
+    margin-top: 0;
+}
+
+.listings table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.listings th,
+.listings td {
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.listings th {
+    border-bottom: 1px solid #f2f2f2;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.listings td {
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 0.9rem;
+}
+
+.button {
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 2rem;
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+}
+
+.close-btn {
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.modal input,
+.modal select {
+    padding: 0.8rem;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    width: 100%;
+}
+
+#images,
+#propertyType {
+    grid-column: span 2;
+}
+
+.modal .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    grid-column: span 2;
+}
+
+.modal button {
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0.8rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.modal button:hover {
+    background-color: #333;
+}

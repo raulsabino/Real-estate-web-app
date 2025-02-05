@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+    let currentListingId = null;
+    
     const ctx = document.getElementById('listingChart').getContext('2d');
     new Chart(ctx, {
         type: 'line',
@@ -45,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td>${listing.areaInSquareMeters}</td>
                     <td>${listing.propertyType}</td>
                     <td>${new Date(listing.listingDate).toLocaleDateString()}</td>
-                    <td><a href="/listings/${listing.id}" class="button">View</a></td>
+                    <td><a href="#" class="button view-btn" data-id="${listing.id}">View</a></td>
                 `;
                 tbody.appendChild(row);
             });
@@ -59,18 +61,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const addListingButton = document.querySelector(".listing-button");
     const modal = document.getElementById("add-listing-modal");
-    const closeBtn = document.querySelector(".close-btn");
+    const updateModal = document.getElementById("update-listing-modal");
+    const addCloseBtn = document.querySelector(".add-close-btn");
+    const updateCloseBtn = document.querySelector(".update-close-btn");
     const form = document.getElementById("listingForm");
+    const viewButton = document.querySelector('.listings table tbody');
+
+    //create
 
     addListingButton.addEventListener("click", (event) => {
         event.preventDefault();
         modal.style.display = "flex";
     });
 
-    closeBtn.addEventListener("click", (event) => {
+    addCloseBtn.addEventListener("click", (event) => {
         event.preventDefault();
-        form.reset();
         modal.style.display = "none";
+        form.reset();
     });
 
     window.addEventListener("click", (event) => {
@@ -79,6 +86,68 @@ document.addEventListener("DOMContentLoaded", () => {
             form.reset();
         }
     });
+
+    //update
+
+    viewButton.addEventListener('click', (event) => {
+        if (event.target && event.target.matches('a.view-btn')) {
+            event.preventDefault();
+            
+            updateModal.style.display = "flex";
+    
+            const listingId = event.target.getAttribute('data-id');
+            currentListingId = listingId;
+    
+            fetch(`http://localhost:5240/listings/${listingId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to fetch listing: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(listing => {
+                    if (!listing) {
+                        console.error("Error: Listing is null or undefined.");
+                        return;
+                    }
+
+                    document.getElementById('update-title').value = listing.title || '';
+                    document.getElementById('update-description').value = listing.description || '';
+                    document.getElementById('update-address').value = listing.address || '';
+                    document.getElementById('update-city').value = listing.city || '';
+                    document.getElementById('update-state').value = listing.state || '';
+                    document.getElementById('update-neighborhood').value = listing.neighborhood || '';
+                    document.getElementById('update-price').value = listing.price || 0;
+                    document.getElementById('update-hoa').value = listing.hoa || 0;
+                    document.getElementById('update-propertytaxes').value = listing.propertyTaxes || 0;
+                    document.getElementById('update-area').value = listing.areaInSquareMeters || 0;
+                    document.getElementById('update-bedrooms').value = listing.bedrooms || 0;
+                    document.getElementById('update-bathrooms').value = listing.bathrooms || 0;
+                    document.getElementById('update-livingroom').value = listing.livingRoom || 0;
+                    document.getElementById('update-parkingspaces').value = listing.parkingSpaces || 0;
+                    document.getElementById('update-propertyType').value = listing.propertyType || '';
+                })
+                .catch(error => {
+                    console.error("Error fetching listing details:", error);
+                });
+        }
+    });
+    
+
+    updateCloseBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        updateModal.style.display = "none";
+        form.reset();
+    });
+
+    window.addEventListener("click", (event) => {
+        if (event.target === updateModal) {
+            updateModal.style.display = "none";
+            form.reset();
+        }
+    });
+
+    //create
 
     async function uploadImage(file) {
         const formData = new FormData();
@@ -139,5 +208,37 @@ document.addEventListener("DOMContentLoaded", () => {
             modal.style.display = "none";
         })
         .catch(error => console.error("Error adding listing:", error));
+    });
+
+    // delete
+    
+    const deleteButton = document.querySelector(".deleteButton");
+    deleteButton.addEventListener("click", (event) => {
+        if (!currentListingId) {
+        alert("No listing ID found. Unable to delete.");
+        return;
+        }
+        
+        const confirmDelete = confirm("Are you sure you want to delete this listing?");
+        if (!confirmDelete) {
+        return;
+        }
+        
+        fetch(`http://localhost:5240/listings/${currentListingId}`, {
+        method: "DELETE",
+        })
+        .then(response => {
+            if (!response.ok) {
+            throw new Error(`Failed to delete listing: ${response.status}`);
+            }
+            alert("Listing deleted successfully!");
+            updateModal.style.display = "none";
+            loadListings();
+            currentListingId = null;
+        })
+        .catch(error => {
+            console.error("Error deleting listing:", error);
+            alert("Failed to delete the listing. Please try again.");
+        });
     });
 });

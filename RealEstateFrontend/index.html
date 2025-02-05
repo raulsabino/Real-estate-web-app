@@ -87,7 +87,36 @@
                 <input type="text" id="propertyType" placeholder="Property Type" required>
                 
                 <button type="submit">Submit</button>
-                <button class="close-btn">Cancel</button>
+                <button class="add-close-btn">Cancel</button>
+            </form>
+        </div>
+    </div>
+      <div id="update-listing-modal" class="modal">
+        <div class="modal-content">
+            <h2>Update Listing</h2>
+            <form id="listingForm">
+                <input type="text" id="update-title" placeholder="Title" required>
+                <input type="text" id="update-description" placeholder="Description" required>
+                <input type="text" id="update-address" placeholder="Address" required>
+                <input type="text" id="update-city" placeholder="City" required>
+                <input type="text" id="update-state" placeholder="State" required>
+                <input type="text" id="update-neighborhood" placeholder="Neighborhood">
+                <input type="number" id="update-price" placeholder="Price" required>
+                <input type="number" id="update-hoa" placeholder="HOA">
+                <input type="number" id="update-propertytaxes" placeholder="Property Taxes">
+                <input type="number" id="update-area" placeholder="Area (sq. m)" required>
+                <input type="number" id="update-bedrooms" placeholder="Bedrooms">
+                <input type="number" id="update-bathrooms" placeholder="Bathrooms">
+                <input type="number" id="update-livingroom" placeholder="Living Room">
+                <input type="number" id="update-parkingspaces" placeholder="Parking Spaces">
+                
+                <input type="file" id="images" accept="image/*" multiple>
+    
+                <input type="text" id="update-propertyType" placeholder="Property Type" required style="grid-column: span 2;">
+                
+                <button type="submit">Update</button>
+                <div class="deleteButton">Delete</div>
+                <button class="update-close-btn" type="button">Cancel</button>
             </form>
         </div>
     </div>

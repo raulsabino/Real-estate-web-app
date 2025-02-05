@@ -56,6 +56,10 @@ header {
     font-weight: bold;
 }
 
+.listing-button:hover {
+    background-color:#333;
+}
+
 .container {
     padding: 0rem 2rem 2rem 2rem;
     margin: 0 auto;
@@ -161,6 +165,10 @@ header {
     font-size: 0.8rem;
 }
 
+.button:hover {
+    color: #333;
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -184,11 +192,36 @@ header {
     position: relative;
 }
 
-.close-btn {
+.add-close-btn {
     top: 10px;
     right: 15px;
     font-size: 24px;
     cursor: pointer;
+}
+
+.update-close-btn {
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    grid-column: span 2;
+    width: 100%;
+}
+
+.deleteButton {
+    background-color: #D9534F;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0.8rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.deleteButton:hover {
+    background-color: #ad433f; /* Darker red on hover */
 }
 
 .modal form {
